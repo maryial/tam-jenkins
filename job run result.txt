@@ -1,0 +1,83 @@
+In progressConsole Output
+
+Started by user test
+Building remotely on slavenode (slave) in workspace /home/mar/slave/workspace/gitjob
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/vitalliuss/helloci.git # timeout=10
+Fetching upstream changes from https://github.com/vitalliuss/helloci.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/vitalliuss/helloci.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 37b68612ef77f4cda7425a3fe008ee847bb29d51 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 37b68612ef77f4cda7425a3fe008ee847bb29d51
+ > git rev-list 37b68612ef77f4cda7425a3fe008ee847bb29d51 # timeout=10
+[gitjob] $ /home/mar/slave/tools/hudson.tasks.Maven_MavenInstallation/3.3.9/bin/mvn -f Java/pom.xml test
+
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building hello-ci 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello-ci ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/mar/slave/workspace/gitjob/Java/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello-ci ---
+
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello-ci ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/mar/slave/workspace/gitjob/Java/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello-ci ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.16:test (default-test) @ hello-ci ---
+[INFO] Surefire report directory: /home/mar/slave/workspace/gitjob/Java/target/surefire-reports
+[INFO] Using configured provider org.apache.maven.surefire.junit4.JUnit4Provider
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Running com.github.vitalliuss.helloci.AppTest
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 1, Time elapsed: 0.113 sec <<< FAILURE! - in com.github.vitalliuss.helloci.AppTest
+testShouldBeFailed(com.github.vitalliuss.helloci.AppTest)  Time elapsed: 0.009 sec  <<< FAILURE!
+java.lang.AssertionError: null
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at com.github.vitalliuss.helloci.AppTest.testShouldBeFailed(AppTest.java:21)
+
+
+Results :
+
+Failed tests: 
+  AppTest.testShouldBeFailed:21 null
+
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 1
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.708 s
+[INFO] Finished at: 2017-01-04T14:42:01-08:00
+[INFO] Final Memory: 7M/19M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.16:test (default-test) on project hello-ci: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /home/mar/slave/workspace/gitjob/Java/target/surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+Build step 'Invoke top-level Maven targets' marked build as failure
+Finished: FAILURE
